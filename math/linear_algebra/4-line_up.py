@@ -9,7 +9,7 @@ def add_arrays(arr1, arr2):
     """
     add two matrix
     """
-    
+
     results = []
     lenght1 = len(arr1)
     lenght2 = len(arr2)
