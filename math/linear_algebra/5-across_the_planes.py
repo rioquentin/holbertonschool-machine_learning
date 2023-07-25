@@ -10,7 +10,7 @@ def add_matrices2D(mat1, mat2):
     add matrices
     """
 
-    if not mat1 and not mat2:
+    if not mat1 or not mat2:
         return None
 
     matrix_shape = __import__('2-size_me_please').matrix_shape
