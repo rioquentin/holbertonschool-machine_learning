@@ -11,7 +11,7 @@ def matrix_shape(matrix):
     isinstance function in case there is nested list
     """
     
-    if not matrix:
+    if len(matrix) is 0:
         return None
     shape = []
     while isinstance(matrix, list):
