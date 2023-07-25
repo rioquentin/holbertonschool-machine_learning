@@ -10,11 +10,11 @@ def add_matrices2D(mat1, mat2):
     add matrices
     """
 
-    matrix_shape = __import__('2-size_me_please').matrix_shape
-
-    if not len(mat1) == 0 or len(mat2) == 0:
+    if not mat1 and not mat2:
         return None
 
+    matrix_shape = __import__('2-size_me_please').matrix_shape
+    
     if matrix_shape(mat1) != matrix_shape(mat2):
         return None
 
