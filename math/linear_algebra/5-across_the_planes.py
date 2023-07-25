@@ -12,10 +12,10 @@ def add_matrices2D(mat1, mat2):
 
     matrix_shape = __import__('2-size_me_please').matrix_shape
 
-    if matrix_shape(mat1) != matrix_shape(mat2):
-        return None
-    
     if not mat1 and not mat2:
+        return None
+
+    if matrix_shape(mat1) != matrix_shape(mat2):
         return None
 
     result = []
