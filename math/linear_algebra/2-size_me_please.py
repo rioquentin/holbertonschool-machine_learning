@@ -10,6 +10,9 @@ def matrix_shape(matrix):
     This calculate the shape of a matrix using
     isinstance function in case there is nested list
     """
+    
+    if not matrix:
+        return None
     shape = []
     while isinstance(matrix, list):
         shape.append(len(matrix))
