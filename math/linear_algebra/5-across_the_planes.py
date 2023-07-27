@@ -12,10 +12,10 @@ def add_matrices2D(mat1, mat2):
     add matrices
     """
 
-    if matrix_shape(mat1) != matrix_shape(mat2):
+    if mat1 is None or mat2 is None:
         return None
 
-    if mat1 is None or mat2 is None:
+    if matrix_shape(mat1) != matrix_shape(mat2):
         return None
 
     result = []
