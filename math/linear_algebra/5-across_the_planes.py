@@ -14,6 +14,9 @@ def add_matrices2D(mat1, mat2):
 
     if mat1 is None or mat2 is None:
         return None
+    
+    if not mat1 and not mat2:
+        return []
 
     if matrix_shape(mat1) != matrix_shape(mat2):
         return None
