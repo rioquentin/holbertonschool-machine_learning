@@ -13,6 +13,8 @@ def matrix_shape(matrix):
 
     shape = []
     while isinstance(matrix, list):
+        if not matrix:
+            return shape
         shape.append(len(matrix))
         matrix = matrix[0]
     return shape
