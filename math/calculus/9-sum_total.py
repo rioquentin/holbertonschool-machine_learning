@@ -5,7 +5,6 @@
 Returns:
     result
 """
-import numpy as np
 
 
 def summation_i_squared(n):
