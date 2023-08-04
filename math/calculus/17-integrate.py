@@ -12,9 +12,12 @@ def poly_integral(poly, C=0):
 
     if not isinstance(poly, list):
         return None
-    if all(isinstance(coeff, (int, float)) for coeff in poly):
-        return None
-    if not isinstance(C, int):
+
+    def is_valid(coeff):
+        return isinstance(coeff, (int, float)) or \
+               (isinstance(coeff, int) and coeff.is_integer())
+
+    if not all(is_valid(coeff) for coeff in poly) or not isinstance(C, int):
         return None
 
     integral_coeffs = [coeff / (i + 1) for i, coeff in enumerate(poly)]
