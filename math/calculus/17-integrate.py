@@ -7,9 +7,8 @@ Task 17 - Integrate
 
 def poly_integral(poly, C=0):
     """
-    function def poly_integral(poly, C=0):
+    Yeet
     """
-
     if not isinstance(poly, list):
         return None
 
@@ -21,9 +20,14 @@ def poly_integral(poly, C=0):
         return None
 
     integral_coeffs = [coeff / (i + 1) for i, coeff in enumerate(poly)]
-    integral_coeffs.insert(0, C)
-
     while integral_coeffs and integral_coeffs[-1] == 0:
         integral_coeffs.pop()
 
-    return integral_coeffs
+    integral_coeffs_with_condition = []
+    for coeff in integral_coeffs:
+        if coeff.is_integer():
+            integral_coeffs_with_condition.append(int(coeff))
+        else:
+            integral_coeffs_with_condition.append(coeff)
+
+    return [C] + integral_coeffs_with_condition
