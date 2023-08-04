@@ -9,7 +9,7 @@ def poly_integral(poly, C=0):
     """
     Yeet
     """
-    if not isinstance(poly, list):
+    if not isinstance(poly, list) or not poly:
         return None
 
     def is_valid(coeff):
