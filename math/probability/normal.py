@@ -46,6 +46,9 @@ class Normal:
         return self.mean + z * self.stddev
     
     def pdf(self, x):
+        """
+        Function to calculate pdf
+        """
         sqrt_2_pi = (2 * self.pi) ** 0.5
         coefficient = 1 / (self.stddev * sqrt_2_pi)
         exponent = -0.5 * ((x - self.mean) / self.stddev) ** 2
