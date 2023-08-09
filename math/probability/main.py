@@ -6,7 +6,7 @@ Normal = __import__('normal').Normal
 np.random.seed(0)
 data = np.random.normal(70, 10, 100).tolist()
 n1 = Normal(data)
-print('Mean:', n1.mean, ', Stddev:', n1.stddev)
+print('PSI(90):', n1.pdf(90))
 
 n2 = Normal(mean=70, stddev=10)
-print('Mean:', n2.mean, ', Stddev:', n2.stddev)
+print('PSI(90):', n2.pdf(90))
