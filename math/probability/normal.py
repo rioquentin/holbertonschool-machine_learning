@@ -4,6 +4,8 @@
 Task 6 - Initialize Normal class
 """
 
+import numpy as np
+
 
 class Normal:
     """
@@ -54,3 +56,25 @@ class Normal:
         exponent = -0.5 * ((x - self.mean) / self.stddev) ** 2
         pdf_value = coefficient * (self.e ** exponent)
         return pdf_value
+
+    def cdf(self, x):
+        """
+        Function to calculate the CDF using an improved approximation of the error function
+        """
+        value = (x - self.mean) / (self.stddev * (2 ** (1 / 2)))
+
+        erf = value
+        numerator = value
+        denominator = 1.0
+        sign = 1.0
+
+        for term in range(1, 15):
+            numerator *= value * value
+            denominator *= term
+            sign *= -1
+            erf += sign * (numerator / (denominator * (2 * term + 1)))
+
+        erf *= (2 / (self.pi ** (1 / 2)))
+        cdf = 0.5 * (1 + erf)
+
+        return cdf
