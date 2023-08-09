@@ -4,8 +4,6 @@
 Task 6 - Initialize Normal class
 """
 
-import numpy as np
-
 
 class Normal:
     """
