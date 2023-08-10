@@ -28,3 +28,23 @@ class Binomial:
             self.p = 1 - (variance / mean)
             self.n = int(round(mean / self.p))
             self.p = mean / self.n
+
+    def factorial(self, i):
+        """
+        Function to calculate the factorial of a number
+        """
+
+        return 1 if i == 0 else i * self.factorial(i - 1)
+
+    def pmf(self, k):
+        """
+        Function to calculate the pmf of the data
+        """
+
+        if not isinstance(k, int):
+            k = int(k)
+        if k < 0:
+            return 0
+        binomial_coeff = self.factorial(
+            self.n) / (self.factorial(k) * self.factorial(self.n - k))
+        return binomial_coeff * (self.p ** k) * ((1 - self.p) ** (self.n - k))
