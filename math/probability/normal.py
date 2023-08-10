@@ -54,7 +54,7 @@ class Normal:
         exponent = -0.5 * ((x - self.mean) / self.stddev) ** 2
         pdf_value = coefficient * (self.e ** exponent)
         return pdf_value
-    
+
     def cdf(self, x):
         """
         Function to calculate the CDF
@@ -65,4 +65,3 @@ class Normal:
         erf *= (2 / (self.pi ** (1 / 2)))
         cdf = (1 / 2) * (1 + erf)
         return cdf
-    
