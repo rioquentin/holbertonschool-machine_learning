@@ -49,12 +49,15 @@ class Neuron:
         return self.__A
 
     def sigmoid(self, x):
+        """
+        Activation function
+        """
         return 1 / (1 + np.exp(-x))
 
     def forward_prop(self, X):
         """
         Function to calculate the forward propagation
-        where X is a matrix X(nx, m) --> 
+        where X is a matrix X(nx, m) -->
         nx = number of input feature and m = numbers of examples
         """
         z = np.dot(self.W, X) + self.b
