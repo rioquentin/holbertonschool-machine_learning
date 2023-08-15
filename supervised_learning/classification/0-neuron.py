@@ -14,7 +14,7 @@ class Neuron:
         Class constructor
         """
 
-        if not isinstance(nx, int) and not isinstance(nx, float):
+        if not isinstance(nx, int):
             raise TypeError("nx must be an integer or a float")
         if nx < 1:
             raise ValueError("nx must be a positive integer")
