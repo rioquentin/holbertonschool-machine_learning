@@ -81,4 +81,15 @@ class Neuron:
         cost = self.cost(Y, predicted_labels)
         predicted_labels = (predicted_labels >= 0.5).astype(int)
         return predicted_labels, cost
-    
+
+    def gradient_descent(self, X, Y, A, alpha=0.05):
+        """
+        Perform a gradient descent
+        """
+
+        dw = 1 / Y.shape[1] * np.dot(X, (A - Y).T)
+        db = 1 / Y.shape[1] * np.sum(A - Y)
+        self.__W = self.__W - alpha * dw
+        self.__b = self.__b - alpha * db
+
+        return self.__W, self.__b
