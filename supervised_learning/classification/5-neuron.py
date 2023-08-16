@@ -86,10 +86,10 @@ class Neuron:
         """
         Perform a gradient descent
         """
-
-        dw = 1 / Y.shape[1] * np.dot(X, (A - Y).T)
-        db = 1 / Y.shape[1] * np.sum(A - Y)
-        self.__W = self.__W - alpha * dw
-        self.__b = self.__b - alpha * db
+        m = Y.shape[1]
+        dw = 1 / m * np.dot(X, (A - Y).T)
+        db = 1 / m * np.sum(A - Y)
+        self.__W -= alpha * dw.T  # Transpose dw to match __W shape
+        self.__b -= alpha * db
 
         return self.__W, self.__b
