@@ -59,7 +59,16 @@ class Neuron:
         Function to calculate the forward propagation
         where X is a matrix X(nx, m) -->
         nx = number of input feature and m = numbers of examples
-        """ 
+        """
         z = np.dot(self.W, X) + self.b
         self.__A = self.sigmoid(z)
         return self.__A
+
+    def cost(self, Y, A):
+        """
+        Log Loss function
+        """
+        epsilon = 1.0000001
+        m = Y.shape[1]
+        L = -1 / m * np.sum(Y * np.log(A) + (1 - Y) * np.log(epsilon - A))
+        return L
