@@ -106,17 +106,17 @@ class NeuralNetwork:
         cost = self.cost(Y, A2)
         predicted_labels = (A2 >= 0.5).astype(int)
         return predicted_labels, cost
-    
+
     def gradient_descent(self, X, Y, A1, A2, alpha=0.05):
         """
         Perform a gradient descent
         """
-        
+
         m = Y.shape[1]
         dZ2 = A2 - Y
         dW2 = 1 / m * dZ2.dot(A1.T)
         db2 = 1 / m * np.sum(dZ2, axis=1, keepdims=True)
-        
+
         dZ1 = np.dot(self.W2.T, dZ2) * A1 * (1 - A1)
         dW1 = 1 / m * dZ1.dot(X.T)
         db1 = 1 / m * np.sum(dZ1, axis=1, keepdims=True)
