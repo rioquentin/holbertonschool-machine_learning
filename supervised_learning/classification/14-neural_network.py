@@ -5,7 +5,6 @@ Task 8 Define Neural Network class
 """
 
 import numpy as np
-import matplotlib as plt
 
 
 class NeuralNetwork:
