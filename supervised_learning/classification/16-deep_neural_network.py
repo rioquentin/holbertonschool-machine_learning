@@ -25,7 +25,7 @@ class DeepNeuralNetwork:
         
         for i in range(1, self.L):
             # Initialize weights using He et al. initialization
-            self.weights[f"W{i}"] = np.random.randn(layers[i], layers[i - 1]) * np.sqrt(2.0 / layers[i - 1])
+            self.weights["W{}".format(i)] = np.random.randn(layers[i], layers[i - 1]) * np.sqrt(2.0 / layers[i - 1])
             
             # Initialize biases to zeros
-            self.weights[f"b{i}"] = np.zeros((layers[i], 1))
+            self.weights["b{}".format(i)] = np.zeros((layers[i], 1))
