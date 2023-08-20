@@ -97,13 +97,14 @@ class DeepNeuralNetwork:
     def gradient_descent(self, Y, cache, alpha=0.05):
         m = Y.shape[1]
         L = self.L
-        
+
         dZ = cache['A' + str(L)] - Y
         for l in range(L, 0, -1):
             A_prev = cache['A' + str(l - 1)]
             dW = (1 / m) * np.dot(dZ, A_prev.T)
             db = (1 / m) * np.sum(dZ, axis=1, keepdims=True)
-            dZ = np.dot(self.__weights['W' + str(l)].T, dZ) * (A_prev * (1 - A_prev))
-            
+            dZ = np.dot(self.__weights['W' + str(l)].T,
+                        dZ) * (A_prev * (1 - A_prev))
+
             self.__weights['W' + str(l)] -= alpha * dW
             self.__weights['b' + str(l)] -= alpha * db
