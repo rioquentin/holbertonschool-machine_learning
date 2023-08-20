@@ -95,6 +95,9 @@ class DeepNeuralNetwork:
         return predicted_labels, cost
 
     def gradient_descent(self, Y, cache, alpha=0.05):
+        """
+        Backward Propagation
+        """
         m = Y.shape[1]
         L = self.L
 
