@@ -83,12 +83,13 @@ class DeepNeuralNetwork:
         m = Y.shape[1]
         L = -1 / m * np.sum(Y * np.log(A) + (1 - Y) * np.log(epsilon - A))
         return L
-    
+
     def evaluate(self, X, Y):
         """
         Evaluate
         """
         A, cache = self.forward_prop(X)
         cost = self.cost(Y, cache['A' + str(len(cache) - 1)])
-        predicted_labels = ( cache['A' + str(len(cache) - 1)] >= 0.5).astype(int)
+        predicted_labels = (
+            cache['A' + str(len(cache) - 1)] >= 0.5).astype(int)
         return predicted_labels, cost
