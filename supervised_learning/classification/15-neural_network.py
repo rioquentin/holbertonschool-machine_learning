@@ -153,9 +153,8 @@ class NeuralNetwork:
             if verbose and (i % step == 0 or i == 0 or i == iterations):
                 cost = self.cost(Y, A2)
                 print(f"Cost after {i} iterations: {cost}")
-                costs.append((i, cost))  # Append (iteration, cost) tuple for plotting
+                costs.append((i, cost))
 
-        # Plotting the cost values
         if graph:
             iterations_to_plot, costs_to_plot = zip(*costs)
             plt.plot(iterations_to_plot, costs_to_plot, color='blue')
