@@ -12,7 +12,7 @@ def one_hot_encode(Y, classes):
     Function to convert data to One Hot encode 
     """
 
-    Map = np.zeros((10, 10))
+    Map = np.zeros((classes, classes))
     for i in range(0, len(Map)):
         Map[Y[i]][i] = 1
 
