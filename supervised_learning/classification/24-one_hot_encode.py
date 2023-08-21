@@ -8,12 +8,13 @@ import numpy as np
 
 
 def one_hot_encode(Y, classes):
-    """
-    Function to convert data to One Hot encode 
-    """
-
-    Map = np.zeros((classes, classes))
-    for i in range(0, len(Map)):
-        Map[Y[i]][i] = 1
-
-    return Map
+    if not isinstance(Y, np.ndarray) or len(Y.shape) != 1:
+        return None
+    if not isinstance(classes, int) or classes <= 0:
+        return None
+    
+    m = Y.shape[0]
+    one_hot_matrix = np.zeros((classes, m))
+    one_hot_matrix[Y, np.arange(m)] = 1
+    
+    return one_hot_matrix
