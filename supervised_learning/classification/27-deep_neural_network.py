@@ -27,7 +27,7 @@ class DeepNeuralNetwork:
 
     def __init__(self, nx, layers):
         """
-        Defines a deep neural network performing binary classification.
+        Defines a deep neural network performing multi-class classification.
         :param nx:  is the number of input features.
         :param layers: list with the number of nodes for each layer.
         """
@@ -82,11 +82,18 @@ class DeepNeuralNetwork:
         self.cache["A0"] = X
 
         for i in range(1, self.L + 1):
-            self.cache["A" + str(i)] = sigmoid(
-                np.matmul(self.weights["W" + str(i)],
-                          self.cache["A" + str(i - 1)])
+            z = np.matmul(
+                self.weights["W" + str(i)],
+                self.cache["A" + str(i - 1)])\
                 + self.weights["b" + str(i)]
-            )
+
+            if i == self.L:
+                # Output layer activation function: softmax
+                self.cache["A" + str(i)] =\
+                    np.exp(z) / np.sum(np.exp(z), axis=0, keepdims=True)
+            else:
+                # Hidden layers activation function: sigmoid
+                self.cache["A" + str(i)] = sigmoid(z)
 
         return self.cache["A" + str(self.L)], self.cache
 
@@ -103,8 +110,7 @@ class DeepNeuralNetwork:
             loss function increase in the opposite sign the output is going.
         """
 
-        return (-1 / Y.shape[1]) *\
-            np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))
+        return (-1 / Y.shape[1]) * np.sum(Y * np.log(A))
 
     def evaluate(self, X, Y):
         """
@@ -121,9 +127,10 @@ class DeepNeuralNetwork:
         """
 
         self.forward_prop(X)
-        return np.heaviside(
-            self.cache["A" + str(self.L)] - 0.5, 1
-        ).astype(int),\
+        return np.where(
+            self.cache["A" + str(self.L)] ==
+            np.amax(self.cache["A" + str(self.L)], axis=0), 1, 0
+        ),\
             self.cost(Y, self.cache["A" + str(self.L)])
 
     def gradient_descent(self, Y, cache, alpha=0.05):
@@ -239,3 +246,4 @@ class DeepNeuralNetwork:
         else:
             with f:
                 return load(f)
+            0
