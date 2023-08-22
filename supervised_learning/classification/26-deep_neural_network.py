@@ -128,7 +128,7 @@ class DeepNeuralNetwork:
             raise ValueError("alpha must be positive")
         if not isinstance(step, int):
             raise TypeError("step must be an integer")
-        if step <= 0:
+        if step <= 0 or step > iterations:
             raise ValueError(
                 "step must be a positive integer and <= iterations")
 
@@ -159,20 +159,13 @@ class DeepNeuralNetwork:
     def save(self, filename):
         if not filename.endswith('.pkl'):
             filename += '.pkl'
-
         with open(filename, 'wb') as file:
             pickle.dump(self, file)
-
+    
     @staticmethod
     def load(filename):
         try:
             with open(filename, 'rb') as file:
-                obj = pickle.load(file)
-            if isinstance(obj, DeepNeuralNetwork):
-                return obj
-            else:
-                print("Loaded object is not an instance of DeepNeuralNetwork.")
-                return None
+                return pickle.load(file)
         except FileNotFoundError:
-            print("File {} doesn't exist.".format(filename))
             return None
