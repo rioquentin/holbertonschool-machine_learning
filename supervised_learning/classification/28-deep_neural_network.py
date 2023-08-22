@@ -21,15 +21,29 @@ def sigmoid(x):
         return np.exp(-np.logaddexp(0., -1 * x))
 
 
+def tanh(x):
+    """
+    :param x: int or array. Use math.ext instead of np.exp for integers.
+    :return: tanh function of x
+    """
+    if isinstance(x, int):
+        pos = exp(x)
+        neg = exp(-x)
+        return (pos - neg) / (pos + neg)
+    else:
+        return np.tanh(x)
+
+
 class DeepNeuralNetwork:
     """ Class that defines a deep neural network performing binary
         classification: """
 
-    def __init__(self, nx, layers):
+    def __init__(self, nx, layers, activation='tanh'):
         """
-        Defines a deep neural network performing binary classification.
+        Defines a deep neural network performing multi-class classification.
         :param nx:  is the number of input features.
         :param layers: list with the number of nodes for each layer.
+        :param activation: activation function for hidden layers.
         """
         if not isinstance(nx, int):
             raise TypeError('nx must be an integer')
@@ -40,6 +54,8 @@ class DeepNeuralNetwork:
         if not np.issubdtype(np.array(layers).dtype, np.integer) or\
                 not all(np.array(layers) >= 1):
             raise TypeError('layers must be a list of positive integers')
+        if activation not in ('sig', 'tanh'):
+            raise ValueError("activation must be 'sig' or 'tanh'")
 
         self.__L = len(layers)
         self.__cache = {}
@@ -47,6 +63,7 @@ class DeepNeuralNetwork:
                           np.random.randn(layers[0], nx) * np.sqrt(2 / nx),
                           'b1': np.zeros((layers[0], 1))
                           }
+        self.__activation = activation
 
         for i in range(1, self.__L):
             self.__weights["W" + str(i + 1)] =\
@@ -69,10 +86,15 @@ class DeepNeuralNetwork:
         """  getter method """
         return self.__weights
 
+    @property
+    def activation(self):
+        """  getter method """
+        return self.__activation
+
     def forward_prop(self, X):
         """
         Calculates the forward propagation of the neuron,
-            using a sigmoid activation function.
+            using a sigmoid or tanh activation function.
         :param X: is a numpy.ndarray with shape (nx, m) that contains the input
             nx is the number of input features to the neuron,
             m is the number of examples.
@@ -82,11 +104,21 @@ class DeepNeuralNetwork:
         self.cache["A0"] = X
 
         for i in range(1, self.L + 1):
-            self.cache["A" + str(i)] = sigmoid(
-                np.matmul(self.weights["W" + str(i)],
-                          self.cache["A" + str(i - 1)])
+            z = np.matmul(
+                self.weights["W" + str(i)],
+                self.cache["A" + str(i - 1)])\
                 + self.weights["b" + str(i)]
-            )
+
+            if i == self.L:
+                # Output layer activation function: softmax
+                self.cache["A" + str(i)] =\
+                    np.exp(z) / np.sum(np.exp(z), axis=0, keepdims=True)
+            else:
+                # Hidden layers, select activation function:
+                if self.__activation == 'sig':
+                    self.cache["A" + str(i)] = sigmoid(z)
+                elif self.__activation == 'tanh':
+                    self.cache["A" + str(i)] = tanh(z)
 
         return self.cache["A" + str(self.L)], self.cache
 
@@ -103,8 +135,7 @@ class DeepNeuralNetwork:
             loss function increase in the opposite sign the output is going.
         """
 
-        return (-1 / Y.shape[1]) *\
-            np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))
+        return (-1 / Y.shape[1]) * np.sum(Y * np.log(A))
 
     def evaluate(self, X, Y):
         """
@@ -121,9 +152,10 @@ class DeepNeuralNetwork:
         """
 
         self.forward_prop(X)
-        return np.heaviside(
-            self.cache["A" + str(self.L)] - 0.5, 1
-        ).astype(int),\
+        return np.where(
+            self.cache["A" + str(self.L)] ==
+            np.amax(self.cache["A" + str(self.L)], axis=0), 1, 0
+        ),\
             self.cost(Y, self.cache["A" + str(self.L)])
 
     def gradient_descent(self, Y, cache, alpha=0.05):
@@ -143,8 +175,11 @@ class DeepNeuralNetwork:
         for i in range(self.L, 0, -1):
             dW = m1 * np.matmul(cache['A' + str(i - 1)], dZ.T)
             db = m1 * np.sum(dZ, axis=1, keepdims=True)
-            dZ = np.matmul(self.weights['W' + str(i)].T, dZ) *\
-                (cache['A' + str(i - 1)] * (1 - cache['A' + str(i - 1)]))
+            dZ = np.matmul(self.weights['W' + str(i)].T, dZ)
+            if self.__activation == 'sig':
+                dZ *= (cache['A' + str(i - 1)] * (1 - cache['A' + str(i - 1)]))
+            elif self.__activation == 'tanh':
+                dZ *= (1 - cache['A{}'.format(i - 1)] ** 2)
 
             self.weights['W' + str(i)] -= (alpha * dW).T
             self.weights['b' + str(i)] -= (alpha * db)
