@@ -8,6 +8,9 @@ import numpy as np
 
 
 def one_hot_encode(Y, classes):
+    """
+    Encoder
+    """
     if not isinstance(Y, np.ndarray) or len(Y.shape) != 1:
         return None
     if not isinstance(classes, int) or classes <= 0:
