@@ -18,7 +18,7 @@ def one_hot_encode(Y, classes):
         return None
     if not isinstance(classes, int) or classes <= 0:
         return None
-    
+
     if np.max(Y) >= classes:
         return None
 
