@@ -164,8 +164,7 @@ class DeepNeuralNetwork:
             filename += '.pkl'
 
         with open(filename, 'wb') as f:
-            pickle.dump(self, f)
-            f.close()
+            pickle.dump(self, f, protocol=2)
 
     @staticmethod
     def load(filename):
