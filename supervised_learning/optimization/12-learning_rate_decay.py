@@ -5,7 +5,7 @@ for a neural network in TensorFlow using inverse time decay
 """
 
 
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 
 def learning_rate_decay(alpha, decay_rate, global_step, decay_step):
