@@ -5,7 +5,7 @@ for a neural network in TensorFlow
 """
 
 
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 
 def create_batch_norm_layer(prev, n, activation):
