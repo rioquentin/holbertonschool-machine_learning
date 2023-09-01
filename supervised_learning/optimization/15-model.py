@@ -6,7 +6,7 @@ learning rate decay, and batch normalization
 """
 
 
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import numpy as np
 
 
