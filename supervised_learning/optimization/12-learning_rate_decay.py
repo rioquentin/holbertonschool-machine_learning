@@ -5,7 +5,11 @@ for a neural network in TensorFlow using inverse time decay
 """
 
 
+<<<<<<< HEAD
 import tensorflow as tf
+=======
+import tensorflow.compat.v1 as tf
+>>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886
 
 
 def learning_rate_decay(alpha, decay_rate, global_step, decay_step):
@@ -29,4 +33,8 @@ def learning_rate_decay(alpha, decay_rate, global_step, decay_step):
     """
     op = tf.train.inverse_time_decay(
         alpha, global_step, decay_step, decay_rate, staircase=True)
+<<<<<<< HEAD
     return op
+=======
+    return op
+>>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886

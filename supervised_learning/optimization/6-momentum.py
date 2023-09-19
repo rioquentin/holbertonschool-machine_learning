@@ -6,7 +6,11 @@ the gradient descent with momentum optimization algorithm
 """
 
 
+<<<<<<< HEAD
 import tensorflow as tf
+=======
+import tensorflow.compat.v1 as tf
+>>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886
 
 
 def create_momentum_op(loss, alpha, beta1):
@@ -23,4 +27,8 @@ def create_momentum_op(loss, alpha, beta1):
         the momentum optimization operation
     """
     op = tf.train.MomentumOptimizer(alpha, beta1).minimize(loss)
+<<<<<<< HEAD
     return op
+=======
+    return op
+>>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886

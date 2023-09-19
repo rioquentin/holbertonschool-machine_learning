@@ -29,4 +29,8 @@ def update_variables_RMSProp(alpha, beta2, epsilon, var, grad, s):
     """
     s_dW = (beta2 * s) + ((1 - beta2) * (grad ** 2))
     var -= alpha * (grad / (epsilon + (s_dW ** (1 / 2))))
+<<<<<<< HEAD
     return var, s_dW
+=======
+    return var, s_dW
+>>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886

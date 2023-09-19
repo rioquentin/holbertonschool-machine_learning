@@ -6,7 +6,11 @@ learning rate decay, and batch normalization
 """
 
 
+<<<<<<< HEAD
 import tensorflow as tf
+=======
+import tensorflow.compat.v1 as tf
+>>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886
 import numpy as np
 
 
@@ -24,4 +28,8 @@ def model(Data_train, Data_valid, layers, activations, alpha=0.001,
 
     returns:
         the path where the model was saved
+<<<<<<< HEAD
     """
+=======
+    """
+>>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886

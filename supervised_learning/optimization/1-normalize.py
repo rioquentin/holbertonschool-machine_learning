@@ -31,4 +31,8 @@ def normalize(X, m, s):
         the normalized X matrix
     """
     normalized = (X - m) / s
+<<<<<<< HEAD
     return (normalized)
+=======
+    return (normalized)
+>>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886

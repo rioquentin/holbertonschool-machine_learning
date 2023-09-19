@@ -31,4 +31,8 @@ def normalization_constants(X):
     """
     mu = X.mean(axis=0)
     sigma = X.std(axis=0)
+<<<<<<< HEAD
     return (mu, sigma)
+=======
+    return (mu, sigma)
+>>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886

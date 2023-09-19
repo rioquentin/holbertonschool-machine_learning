@@ -25,4 +25,8 @@ def learning_rate_decay(alpha, decay_rate, global_step, decay_step):
 
     returns:
         the updated value for alpha
+<<<<<<< HEAD
     """
+=======
+    """
+>>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886
