@@ -6,7 +6,11 @@ for a neural network in TensorFlow
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import tensorflow as tf
+=======
+import tensorflow.compat.v1 as tf
+>>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886
 =======
 import tensorflow.compat.v1 as tf
 >>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886
@@ -46,7 +50,11 @@ def create_batch_norm_layer(prev, n, activation):
         0, shape=(1, n), trainable=True, name="gamma"))
     Z = tf.nn.batch_normalization(x, mean, variance, beta, gamma, 1e-8)
 <<<<<<< HEAD
+<<<<<<< HEAD
     return Z
+=======
+    return Z
+>>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886
 =======
     return Z
 >>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886

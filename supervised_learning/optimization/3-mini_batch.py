@@ -108,7 +108,11 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
                                    y: Y_train_s[low:high, :]})
                     print("\t\tAccuracy: {}".format(step_accuracy))
 <<<<<<< HEAD
+<<<<<<< HEAD
         return (saver.save(sess, save_path))
+=======
+        return (saver.save(sess, save_path))
+>>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886
 =======
         return (saver.save(sess, save_path))
 >>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886

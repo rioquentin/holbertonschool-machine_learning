@@ -32,7 +32,11 @@ def normalize(X, m, s):
     """
     normalized = (X - m) / s
 <<<<<<< HEAD
+<<<<<<< HEAD
     return (normalized)
+=======
+    return (normalized)
+>>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886
 =======
     return (normalized)
 >>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886

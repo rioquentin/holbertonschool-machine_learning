@@ -30,7 +30,11 @@ def shuffle_data(X, Y):
     X_shuffled = X[shuffle_pattern]
     Y_shuffled = Y[shuffle_pattern]
 <<<<<<< HEAD
+<<<<<<< HEAD
     return (X_shuffled, Y_shuffled)
+=======
+    return (X_shuffled, Y_shuffled)
+>>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886
 =======
     return (X_shuffled, Y_shuffled)
 >>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886

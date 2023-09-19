@@ -29,7 +29,11 @@ def moving_average(data, beta):
         v = ((v * beta) + ((1 - beta) * data[i]))
         EMA.append(v / (1 - (beta ** (i + 1))))
 <<<<<<< HEAD
+<<<<<<< HEAD
     return EMA
+=======
+    return EMA
+>>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886
 =======
     return EMA
 >>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886

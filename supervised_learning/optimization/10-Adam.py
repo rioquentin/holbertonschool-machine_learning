@@ -7,7 +7,11 @@ the Adam optimization algorithm
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import tensorflow as tf
+=======
+import tensorflow.compat.v1 as tf
+>>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886
 =======
 import tensorflow.compat.v1 as tf
 >>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886
@@ -31,7 +35,11 @@ def create_Adam_op(loss, alpha, beta1, beta2, epsilon):
     op = tf.train.AdamOptimizer(
         alpha, beta1=beta1, beta2=beta2, epsilon=epsilon).minimize(loss)
 <<<<<<< HEAD
+<<<<<<< HEAD
     return op
+=======
+    return op
+>>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886
 =======
     return op
 >>>>>>> 8df1b1cde11557e77d0ddcb331fc2f85786c7886
