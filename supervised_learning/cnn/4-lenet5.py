@@ -1,11 +1,7 @@
 #!/usr/bin/env python3
-"""
-Defines a function that builds a modified version of LeNet-5 architecture
-using TensorFlow
-"""
-
 
 import tensorflow.compat.v1 as tf
+tf.disable_eager_execution()
 
 
 def lenet5(x, y):
@@ -29,8 +25,8 @@ def lenet5(x, y):
     F7: fully connected softmax output layer with 10 nodes
 
     All layers requiring init should initialize kernels with he_normal method:
-        tf.contrib.layers.variance_scaling_initializer()
-    All hidden layer requiring activation should use relu activation function
+        tf.keras.initializers.he_normal()
+    All hidden layers requiring activation should use relu activation function
 
     returns:
         a tensor for the softmax activated output
@@ -39,7 +35,7 @@ def lenet5(x, y):
         a tensor for the loss of the network
         a tensor for the accuracy of the network
     """
-    weights_initializer = tf.contrib.layers.variance_scaling_initializer()
+    weights_initializer = tf.keras.initializers.he_normal()
     C1 = tf.layers.Conv2D(filters=6,
                           kernel_size=(5, 5),
                           padding='same',
@@ -80,4 +76,5 @@ def lenet5(x, y):
     y_out = tf.math.argmax(y, axis=1)
     equality = tf.math.equal(y_pred, y_out)
     accuracy = tf.reduce_mean(tf.cast(equality, 'float'))
+
     return softmax, op, loss, accuracy
