@@ -50,10 +50,10 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
     kh, kw, c_prev, c_new = W.shape
     sh, sw = stride
     db = np.sum(dZ, axis=(0, 1, 2), keepdims=True)
-    if padding is 'valid':
+    if padding == 'valid':
         ph = 0
         pw = 0
-    elif padding is 'same':
+    elif padding == 'same':
         ph = ((((h_prev - 1) * sh) + kh - h_prev) // 2) + 1
         pw = ((((w_prev - 1) * sw) + kw - w_prev) // 2) + 1
     else:
